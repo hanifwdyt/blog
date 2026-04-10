@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!article) return {};
   return {
     title: article.title,
-    description: `${article.author ? `by ${article.author} · ` : ""}${formatDateLong(article.createdAt)}`,
+    description: `by PunakawanAI · ${formatDateLong(article.createdAt)}`,
   };
 }
 
@@ -42,107 +42,109 @@ export default async function ArticlePage({
     <main
       style={{
         minHeight: "100vh",
-        maxWidth: "860px",
+        maxWidth: "900px",
         margin: "0 auto",
-        padding: "clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3rem)",
+        padding: "clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 3rem)",
       }}
     >
-      {/* ── Nav ─────────────────────────────────────────────── */}
-      <nav style={{ marginBottom: "clamp(3rem, 8vw, 5rem)" }}>
+      {/* ── Top nav ──────────────────────────────────────────── */}
+      <nav
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "clamp(4rem, 10vw, 7rem)",
+        }}
+      >
+        <Link href="/" className="link-back">← all entries</Link>
+        <span className="label-mono">Hanif Widiyanto</span>
+      </nav>
+
+      {/* ── Article header ───────────────────────────────────── */}
+      <header style={{ marginBottom: "3.5rem" }}>
+        {/* Meta line above title */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "2rem",
+            gap: "1.25rem",
+            marginBottom: "1.5rem",
           }}
         >
-          <Link href="/" className="link-back">
-            ← back
-          </Link>
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
-              letterSpacing: "0.08em",
-              color: "var(--text-muted)",
+              fontSize: "0.65rem",
+              color: "var(--accent)",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
             }}
           >
-            blog.hanif.app
+            PunakawanAI
           </span>
-        </div>
-        <div style={{ borderTop: "1px solid var(--border)" }} />
-      </nav>
-
-      {/* ── Article header ──────────────────────────────────── */}
-      <header style={{ marginBottom: "3.5rem" }}>
-        <h1
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2rem, 6vw, 3.2rem)",
-            fontWeight: 700,
-            lineHeight: 1.1,
-            letterSpacing: "-0.03em",
-            color: "var(--text)",
-            margin: "0 0 2rem 0",
-            maxWidth: "20ch",
-          }}
-        >
-          {article.title}
-        </h1>
-
-        <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>
-          {article.author && (
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.72rem",
-                color: "var(--accent)",
-                letterSpacing: "0.06em",
-              }}
-            >
-              {article.author}
-            </span>
-          )}
+          <span
+            style={{
+              width: "1.5rem",
+              height: "1px",
+              background: "var(--border-soft)",
+              display: "inline-block",
+            }}
+          />
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
+              fontSize: "0.65rem",
               color: "var(--text-muted)",
-              letterSpacing: "0.04em",
+              letterSpacing: "0.06em",
             }}
           >
             {formatDateLong(article.createdAt)}
           </span>
         </div>
+
+        <h1
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(2rem, 6vw, 3.4rem)",
+            fontWeight: 700,
+            lineHeight: 1.08,
+            letterSpacing: "-0.035em",
+            color: "var(--text)",
+            margin: 0,
+            maxWidth: "22ch",
+          }}
+        >
+          {article.title}
+        </h1>
       </header>
 
-      {/* ── Divider ─────────────────────────────────────────── */}
+      {/* ── Divider ──────────────────────────────────────────── */}
       <div
         style={{
           borderTop: "1px solid var(--border)",
-          marginBottom: "3rem",
+          marginBottom: "3.5rem",
           position: "relative",
         }}
       >
         <span
           style={{
             position: "absolute",
-            top: "-0.55rem",
+            top: "-0.48rem",
             left: 0,
             fontFamily: "var(--font-mono)",
-            fontSize: "0.6rem",
-            color: "var(--accent)",
-            letterSpacing: "0.15em",
+            fontSize: "0.55rem",
+            color: "var(--accent-dim)",
+            letterSpacing: "0.2em",
             background: "var(--bg)",
             paddingRight: "0.75rem",
+            userSelect: "none",
           }}
         >
           ◆
         </span>
       </div>
 
-      {/* ── Article body ────────────────────────────────────── */}
+      {/* ── Article body ─────────────────────────────────────── */}
       {article.contentHtml ? (
         <div
           className="prose"
@@ -150,47 +152,22 @@ export default async function ArticlePage({
           style={{ fontFamily: "var(--font-body), Georgia, serif" }}
         />
       ) : (
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.8rem",
-            color: "var(--text-muted)",
-          }}
-        >
-          — no content —
-        </p>
+        <p className="label-mono">— no content —</p>
       )}
 
-      {/* ── Footer ──────────────────────────────────────────── */}
+      {/* ── Footer ───────────────────────────────────────────── */}
       <footer
         style={{
-          marginTop: "clamp(4rem, 10vw, 6rem)",
+          marginTop: "clamp(5rem, 12vw, 8rem)",
           paddingTop: "1.5rem",
           borderTop: "1px solid var(--border)",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          flexWrap: "wrap",
-          gap: "0.75rem",
         }}
       >
-        <Link
-          href="/"
-          className="link-muted"
-          style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", letterSpacing: "0.08em" }}
-        >
-          ← all entries
-        </Link>
-        <span
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.68rem",
-            color: "var(--border-soft)",
-            letterSpacing: "0.06em",
-          }}
-        >
-          {new Date().getFullYear()}
-        </span>
+        <Link href="/" className="link-back">← all entries</Link>
+        <span className="label-mono">&copy;&thinsp;{new Date().getFullYear()}</span>
       </footer>
     </main>
   );
