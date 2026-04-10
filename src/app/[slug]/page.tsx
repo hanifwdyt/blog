@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticle, getArticles, formatDateLong } from "@/lib/api";
+import ArticleChart from "@/components/ArticleChart";
 
 export const revalidate = 300;
 
@@ -143,6 +144,11 @@ export default async function ArticlePage({
           ◆
         </span>
       </div>
+
+      {/* ── Chart (if present) ───────────────────────────────── */}
+      {article.chartData && article.chartData !== "" && (
+        <ArticleChart raw={article.chartData} />
+      )}
 
       {/* ── Article body ─────────────────────────────────────── */}
       {article.contentHtml ? (

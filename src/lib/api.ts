@@ -1,10 +1,25 @@
 const NULIS_API = process.env.NULIS_API_URL || "https://nulis.hanif.app";
 
+export interface ChartSeries {
+  key: string;
+  name: string;
+  color?: string;
+}
+
+export interface ChartData {
+  type: "bar" | "line" | "area" | "pie";
+  title?: string;
+  description?: string;
+  data: Record<string, string | number>[];
+  series?: ChartSeries[];
+}
+
 export interface Article {
   id: string;
   title: string;
   slug: string;
   contentHtml: string;
+  chartData: string;
   status: string;
   mode: string;
   author: string;
