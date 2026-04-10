@@ -26,8 +26,8 @@ export default async function HomePage() {
         }}
       >
         <span className="label-mono">Hanif Widiyanto</span>
-        <span className="label-mono">
-          {published.length}&thinsp;{published.length === 1 ? "entry" : "entries"}
+        <span className="label-mono" style={{ color: "var(--accent)", opacity: 0.7 }}>
+          blog.hanif.app
         </span>
       </div>
 
@@ -64,11 +64,18 @@ export default async function HomePage() {
 
       {/* ── Articles ─────────────────────────────────────────── */}
       <section>
+        {/* Section header */}
+        <div className="section-header" style={{ marginBottom: 0 }}>
+          <span className="label-mono">Entries</span>
+          <span className="label-mono">
+            {published.length}&thinsp;{published.length === 1 ? "entry" : "total"}
+          </span>
+        </div>
+
         {published.length === 0 ? (
           <div
             style={{
               padding: "5rem 0",
-              borderTop: "1px solid var(--border)",
               borderBottom: "1px solid var(--border)",
             }}
           >
@@ -79,33 +86,39 @@ export default async function HomePage() {
         ) : (
           <ul style={{ listStyle: "none", padding: 0 }}>
             {published.map((article, i) => (
-              <li key={article.id}>
+              <li
+                key={article.id}
+                className="article-item"
+                style={{ "--i": i } as React.CSSProperties}
+              >
                 <Link href={`/${article.slug}`} className="article-link">
                   <article className="article-row">
                     {/* ── Number ── */}
                     <span
+                      className="article-num"
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "0.62rem",
+                        fontSize: "0.58rem",
                         color: "var(--accent)",
-                        letterSpacing: "0.08em",
-                        paddingTop: "0.28rem",
+                        letterSpacing: "0.1em",
+                        paddingTop: "0.3rem",
                         userSelect: "none",
-                        opacity: 0.75,
+                        opacity: 0.6,
                       }}
                     >
                       {toRoman(i + 1)}
                     </span>
 
-                    {/* ── Title + author ── */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+                    {/* ── Title + meta ── */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                       <h2 className="article-title">{article.title}</h2>
                       <span
                         style={{
                           fontFamily: "var(--font-mono)",
-                          fontSize: "0.62rem",
+                          fontSize: "0.6rem",
                           color: "var(--text-dim)",
-                          letterSpacing: "0.08em",
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
                         }}
                       >
                         {article.author ? "PunakawanAI" : "anonymous"}
@@ -116,10 +129,10 @@ export default async function HomePage() {
                     <span
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "0.62rem",
+                        fontSize: "0.6rem",
                         color: "var(--text-muted)",
                         letterSpacing: "0.05em",
-                        paddingTop: "0.28rem",
+                        paddingTop: "0.3rem",
                         whiteSpace: "nowrap",
                       }}
                     >
@@ -140,9 +153,13 @@ export default async function HomePage() {
           paddingTop: "1.5rem",
           borderTop: "1px solid var(--border)",
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
+        <span className="label-mono" style={{ color: "var(--text-dim)" }}>
+          written by PunakawanAI
+        </span>
         <span className="label-mono">&copy;&thinsp;{new Date().getFullYear()}</span>
       </footer>
     </main>
