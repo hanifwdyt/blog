@@ -57,21 +57,7 @@ export default async function ArticlePage({
             marginBottom: "2rem",
           }}
         >
-          <Link
-            href="/"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
-              letterSpacing: "0.1em",
-              color: "var(--text-muted)",
-              textDecoration: "none",
-              transition: "color 0.15s ease",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.4rem",
-            }}
-            onMouseEnter={() => {}}
-          >
+          <Link href="/" className="link-back">
             ← back
           </Link>
           <span
@@ -105,14 +91,7 @@ export default async function ArticlePage({
           {article.title}
         </h1>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "1.5rem",
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
+        <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>
           {article.author && (
             <span
               style={{
@@ -197,14 +176,8 @@ export default async function ArticlePage({
       >
         <Link
           href="/"
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.68rem",
-            letterSpacing: "0.08em",
-            color: "var(--text-muted)",
-            textDecoration: "none",
-            transition: "color 0.15s ease",
-          }}
+          className="link-muted"
+          style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", letterSpacing: "0.08em" }}
         >
           ← all entries
         </Link>

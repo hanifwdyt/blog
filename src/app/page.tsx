@@ -49,12 +49,7 @@ export default async function HomePage() {
           </span>
         </div>
 
-        <div
-          style={{
-            borderTop: "1px solid var(--border)",
-            paddingTop: "2.5rem",
-          }}
-        >
+        <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2.5rem" }}>
           <h1
             style={{
               fontFamily: "var(--font-serif)",
@@ -87,20 +82,10 @@ export default async function HomePage() {
 
       {/* ── Articles ────────────────────────────────────────── */}
       <section>
-        <div
-          style={{
-            borderTop: "1px solid var(--border)",
-            marginBottom: "0",
-          }}
-        />
+        <div style={{ borderTop: "1px solid var(--border)" }} />
 
         {published.length === 0 ? (
-          <div
-            style={{
-              padding: "4rem 0",
-              textAlign: "center",
-            }}
-          >
+          <div style={{ padding: "4rem 0", textAlign: "center" }}>
             <p
               style={{
                 fontFamily: "var(--font-mono)",
@@ -116,28 +101,8 @@ export default async function HomePage() {
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {published.map((article, i) => (
               <li key={article.id}>
-                <Link
-                  href={`/${article.slug}`}
-                  style={{ textDecoration: "none", display: "block" }}
-                >
-                  <article
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "3rem 1fr auto",
-                      gap: "0 1.5rem",
-                      alignItems: "start",
-                      padding: "2rem 0",
-                      borderBottom: "1px solid var(--border)",
-                      transition: "opacity 0.15s ease",
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) =>
-                      ((e.currentTarget as HTMLElement).style.opacity = "0.6")
-                    }
-                    onMouseLeave={(e) =>
-                      ((e.currentTarget as HTMLElement).style.opacity = "1")
-                    }
-                  >
+                <Link href={`/${article.slug}`} className="article-link">
+                  <article className="article-row">
                     {/* Roman numeral */}
                     <span
                       style={{
@@ -213,34 +178,15 @@ export default async function HomePage() {
           alignItems: "center",
         }}
       >
-        <span
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.68rem",
-            color: "var(--text-muted)",
-            letterSpacing: "0.06em",
-          }}
+        <a
+          href="https://nulis.hanif.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-muted"
+          style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", letterSpacing: "0.06em" }}
         >
-          ↗{" "}
-          <a
-            href="https://nulis.hanif.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: "var(--text-muted)",
-              textDecoration: "none",
-              transition: "color 0.15s",
-            }}
-            onMouseEnter={(e) =>
-              ((e.target as HTMLElement).style.color = "var(--accent)")
-            }
-            onMouseLeave={(e) =>
-              ((e.target as HTMLElement).style.color = "var(--text-muted)")
-            }
-          >
-            nulis.hanif.app
-          </a>
-        </span>
+          ↗ nulis.hanif.app
+        </a>
         <span
           style={{
             fontFamily: "var(--font-mono)",
