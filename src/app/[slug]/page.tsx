@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getArticle, getArticles, formatDateLong } from "@/lib/api";
 import ArticleChart from "@/components/ArticleChart";
 import ReadingProgress from "@/components/ReadingProgress";
+import ContentRenderer from "@/components/ContentRenderer";
 
 export const revalidate = 300;
 
@@ -191,9 +192,9 @@ export default async function ArticlePage({
 
         {/* ── Article body ───────────────────────────────────── */}
         {article.contentHtml ? (
-          <div
+          <ContentRenderer
+            html={article.contentHtml}
             className="prose"
-            dangerouslySetInnerHTML={{ __html: article.contentHtml }}
             style={{ fontFamily: "var(--font-body), Georgia, serif" }}
           />
         ) : (

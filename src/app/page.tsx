@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getArticles, formatDate, toRoman } from "@/lib/api";
+import { getArticles, formatDate, toRoman, extractExcerpt } from "@/lib/api";
 
 export const revalidate = 300;
 
@@ -101,27 +101,41 @@ export default async function HomePage() {
                         fontSize: "0.58rem",
                         color: "var(--accent)",
                         letterSpacing: "0.1em",
-                        paddingTop: "0.3rem",
+                        paddingTop: "0.35rem",
                         userSelect: "none",
-                        opacity: 0.6,
+                        opacity: 0.5,
                       }}
                     >
                       {toRoman(i + 1)}
                     </span>
 
-                    {/* ── Title + meta ── */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                    {/* ── Title + excerpt + meta ── */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
                       <h2 className="article-title">{article.title}</h2>
+                      {article.contentHtml && (
+                        <p
+                          style={{
+                            fontFamily: "var(--font-body), Georgia, serif",
+                            fontSize: "0.82rem",
+                            color: "var(--text-muted)",
+                            lineHeight: 1.6,
+                            margin: 0,
+                            maxWidth: "52ch",
+                          }}
+                        >
+                          {extractExcerpt(article.contentHtml, 140)}
+                        </p>
+                      )}
                       <span
                         style={{
                           fontFamily: "var(--font-mono)",
-                          fontSize: "0.6rem",
+                          fontSize: "0.58rem",
                           color: "var(--text-dim)",
                           letterSpacing: "0.1em",
                           textTransform: "uppercase",
                         }}
                       >
-                        {article.author ? "PunakawanAI" : "anonymous"}
+                        {article.author || "PunakawanAI"}
                       </span>
                     </div>
 
@@ -129,10 +143,10 @@ export default async function HomePage() {
                     <span
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "0.6rem",
+                        fontSize: "0.58rem",
                         color: "var(--text-muted)",
                         letterSpacing: "0.05em",
-                        paddingTop: "0.3rem",
+                        paddingTop: "0.35rem",
                         whiteSpace: "nowrap",
                       }}
                     >

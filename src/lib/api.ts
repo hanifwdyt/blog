@@ -47,10 +47,26 @@ export async function getArticle(slug: string): Promise<Article | null> {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;
-    return res.json();
+    const article: Article = await res.json();
+    if (article.contentHtml) {
+      article.contentHtml = article.contentHtml.replace(
+        /src="\/uploads\//g,
+        `src="${NULIS_API}/uploads/`
+      );
+    }
+    return article;
   } catch {
     return null;
   }
+}
+
+export function extractExcerpt(contentHtml: string, maxLen = 160): string {
+  const text = contentHtml
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (text.length <= maxLen) return text;
+  return text.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
 }
 
 export function formatDate(iso: string): string {

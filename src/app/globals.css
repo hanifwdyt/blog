@@ -115,7 +115,7 @@ main {
   grid-template-columns: 2.8rem 1fr auto;
   gap: 0 1.75rem;
   align-items: start;
-  padding: 1.75rem 1.25rem 1.75rem 0;
+  padding: 2rem 1.25rem 2rem 0;
   border-bottom: 1px solid var(--border);
   background: transparent;
   transition: background 0.2s ease;
@@ -293,3 +293,87 @@ main {
 
 .prose hr { border: none; border-top: 1px solid var(--border); margin: 3em 0; }
 .prose img { max-width: 100%; border-radius: 2px; margin: 2.2em 0; display: block; }
+
+/* ── Syntax Highlighting (highlight.js custom theme) ────────── */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.84em;
+}
+.hljs-comment, .hljs-quote        { color: var(--text-dim); font-style: italic; }
+.hljs-keyword, .hljs-selector-tag,
+.hljs-built_in                    { color: #c4911e; }
+.hljs-string, .hljs-attr,
+.hljs-addition                    { color: #7a9e7e; }
+.hljs-number, .hljs-literal       { color: #6b8cba; }
+.hljs-type, .hljs-class           { color: #b56a6a; }
+.hljs-function .hljs-title,
+.hljs-title.function_             { color: #e4d9c2; font-weight: 600; }
+.hljs-variable, .hljs-template-variable { color: #d4a96a; }
+.hljs-tag, .hljs-name             { color: #c4911e; }
+.hljs-deletion                    { color: #b56a6a; }
+.hljs-emphasis                    { font-style: italic; }
+.hljs-strong                      { font-weight: bold; }
+
+/* ── Mermaid diagrams ───────────────────────────────────────── */
+.mermaid-block {
+  margin: 2.2em 0;
+  padding: 1.75rem 1rem;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow-x: auto;
+  text-align: center;
+}
+.mermaid-block svg {
+  max-width: 100%;
+  height: auto;
+}
+.mermaid-error {
+  color: #b56a6a;
+  font-size: 0.8em;
+  font-family: var(--font-mono, monospace);
+}
+
+/* ── Table ──────────────────────────────────────────────────── */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.2em 0;
+  font-size: 0.9em;
+  font-family: var(--font-body), Georgia, serif;
+}
+.prose thead { border-bottom: 2px solid var(--accent-dim); }
+.prose th {
+  padding: 0.65em 1em;
+  text-align: left;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.prose td {
+  padding: 0.65em 1em;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  line-height: 1.5;
+}
+.prose tr:hover td { background: var(--bg-hover); }
+
+/* ── Enhanced prose images ──────────────────────────────────── */
+.prose img {
+  max-width: 100%;
+  border-radius: 3px;
+  margin: 2.5em auto;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+/* ── Better code block header ───────────────────────────────── */
+.prose pre {
+  position: relative;
+}
