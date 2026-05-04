@@ -66,128 +66,33 @@ export default async function ArticlePage({
     <>
       <ReadingProgress />
       <ScrollToTop />
-      <main
-        style={{
-          minHeight: "100vh",
-          maxWidth: "900px",
-          margin: "0 auto",
-          padding: "clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 3rem)",
-        }}
-      >
+      <main className="page-main">
         {/* ── Top nav ────────────────────────────────────────── */}
-        <nav
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "clamp(4rem, 10vw, 7rem)",
-          }}
-        >
+        <nav className="article-page-nav">
           <Link href="/" className="link-back">← semua tulisan</Link>
           <span className="label-mono">Hanif Widiyanto</span>
         </nav>
 
         {/* ── Article header ─────────────────────────────────── */}
-        <header style={{ marginBottom: "3.5rem" }}>
+        <header className="article-header">
           {/* Meta row */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "0.75rem 1.25rem",
-              marginBottom: "1.75rem",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.62rem",
-                color: "var(--accent)",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-              }}
-            >
-              {author}
-            </span>
-
-            <span
-              style={{
-                width: "1.25rem",
-                height: "1px",
-                background: "var(--border-soft)",
-                display: "inline-block",
-                flexShrink: 0,
-              }}
-            />
-
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.62rem",
-                color: "var(--text-muted)",
-                letterSpacing: "0.06em",
-              }}
-            >
-              {formatDateLong(article.createdAt)}
-            </span>
-
+          <div className="article-header-meta">
+            <span className="article-meta-author">{author}</span>
+            <span className="article-meta-sep" />
+            <span className="article-meta-date">{formatDateLong(article.createdAt)}</span>
             {readingTime && (
               <>
-                <span
-                  style={{
-                    width: "1.25rem",
-                    height: "1px",
-                    background: "var(--border-soft)",
-                    display: "inline-block",
-                    flexShrink: 0,
-                  }}
-                />
+                <span className="article-meta-sep" />
                 <span className="reading-time">{readingTime}&thinsp;min read</span>
               </>
             )}
           </div>
-
-          <h1
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "clamp(2rem, 6vw, 3.4rem)",
-              fontWeight: 700,
-              lineHeight: 1.08,
-              letterSpacing: "-0.035em",
-              color: "var(--text)",
-              margin: 0,
-              maxWidth: "22ch",
-            }}
-          >
-            {article.title}
-          </h1>
+          <h1 className="article-page-title">{article.title}</h1>
         </header>
 
         {/* ── Divider ────────────────────────────────────────── */}
-        <div
-          style={{
-            borderTop: "1px solid var(--border)",
-            marginBottom: "3.5rem",
-            position: "relative",
-          }}
-        >
-          <span
-            style={{
-              position: "absolute",
-              top: "-0.48rem",
-              left: 0,
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.55rem",
-              color: "var(--accent-dim)",
-              letterSpacing: "0.2em",
-              background: "var(--bg)",
-              paddingRight: "0.75rem",
-              userSelect: "none",
-            }}
-          >
-            ◆
-          </span>
+        <div className="article-divider">
+          <span className="article-divider-diamond">◆</span>
         </div>
 
         {/* ── Chart (if present) ─────────────────────────────── */}
@@ -242,20 +147,9 @@ export default async function ArticlePage({
         )}
 
         {/* ── Footer ─────────────────────────────────────────── */}
-        <footer
-          style={{
-            marginTop: "clamp(3rem, 8vw, 5rem)",
-            paddingTop: "1.5rem",
-            borderTop: "1px solid var(--border)",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "0.75rem",
-          }}
-        >
+        <footer className="article-footer">
           <Link href="/" className="link-back">← semua tulisan</Link>
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div className="article-footer-actions">
             <ShareButton />
             <span className="label-mono" style={{ color: "var(--text-dim)" }}>
               &copy;&thinsp;{new Date().getFullYear()}

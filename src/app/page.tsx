@@ -8,23 +8,9 @@ export default async function HomePage() {
   const published = articles.filter((a) => a.status === "published");
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        maxWidth: "900px",
-        margin: "0 auto",
-        padding: "clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 3rem)",
-      }}
-    >
+    <main className="page-main">
       {/* ── Top bar ──────────────────────────────────────────── */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "clamp(4rem, 10vw, 7rem)",
-        }}
-      >
+      <div className="page-topbar">
         <span className="label-mono">Hanif Widiyanto</span>
         <span className="label-mono" style={{ color: "var(--accent)", opacity: 0.6 }}>
           blog.hanif.app
@@ -32,46 +18,15 @@ export default async function HomePage() {
       </div>
 
       {/* ── Hero header ──────────────────────────────────────── */}
-      <header style={{ marginBottom: "clamp(4rem, 10vw, 7rem)" }}>
+      <header className="hero-header">
         <span className="hero-tagline">Jakarta, Indonesia</span>
-        <h1
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2.8rem, 8vw, 5rem)",
-            fontWeight: 700,
-            lineHeight: 1.0,
-            letterSpacing: "-0.04em",
-            color: "var(--text)",
-            margin: "0 0 1.75rem",
-            maxWidth: "14ch",
-          }}
-        >
-          Catatan Perjalanan
-        </h1>
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "clamp(0.95rem, 2.2vw, 1.08rem)",
-            color: "var(--text-muted)",
-            lineHeight: 1.75,
-            maxWidth: "46ch",
-            marginBottom: "1.25rem",
-          }}
-        >
+        <h1 className="hero-title">Catatan Perjalanan</h1>
+        <p className="hero-description">
           Software engineer yang nulis tentang apa yang dia bangun,
           <br />
           rusak, dan pelajari di sepanjang jalan.
         </p>
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "clamp(0.88rem, 2vw, 0.95rem)",
-            color: "var(--text-dim)",
-            lineHeight: 1.7,
-            maxWidth: "44ch",
-            fontStyle: "italic",
-          }}
-        >
+        <p className="hero-sub">
           Tentang kode. Tentang sistem. Tentang proses jadi lebih baik.
         </p>
       </header>
@@ -122,55 +77,18 @@ export default async function HomePage() {
                   <Link href={`/${article.slug}`} className="article-link">
                     <article className="article-row">
                       {/* ── Number ── */}
-                      <span
-                        className="article-num"
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "0.58rem",
-                          color: "var(--accent)",
-                          letterSpacing: "0.1em",
-                          paddingTop: "0.35rem",
-                          userSelect: "none",
-                          opacity: 0.45,
-                        }}
-                      >
-                        {toRoman(i + 1)}
-                      </span>
+                      <span className="article-num">{toRoman(i + 1)}</span>
 
                       {/* ── Title + excerpt + meta ── */}
-                      <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+                      <div className="article-content-col">
                         <h2 className="article-title">{article.title}</h2>
                         {article.contentHtml && (
-                          <p
-                            style={{
-                              fontFamily: "var(--font-body), Georgia, serif",
-                              fontSize: "0.82rem",
-                              color: "var(--text-muted)",
-                              lineHeight: 1.65,
-                              margin: 0,
-                              maxWidth: "52ch",
-                            }}
-                          >
+                          <p className="article-excerpt">
                             {extractExcerpt(article.contentHtml, 140)}
                           </p>
                         )}
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "0.6rem",
-                            flexWrap: "wrap",
-                          }}
-                        >
-                          <span
-                            style={{
-                              fontFamily: "var(--font-mono)",
-                              fontSize: "0.58rem",
-                              color: "var(--text-dim)",
-                              letterSpacing: "0.1em",
-                              textTransform: "uppercase",
-                            }}
-                          >
+                        <div className="article-meta-row">
+                          <span className="article-author-label">
                             {article.author || "Hanif Widiyanto"}
                           </span>
                           {readTime && (
@@ -180,16 +98,7 @@ export default async function HomePage() {
                       </div>
 
                       {/* ── Date ── */}
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "0.58rem",
-                          color: "var(--text-muted)",
-                          letterSpacing: "0.05em",
-                          paddingTop: "0.35rem",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
+                      <span className="article-date-col">
                         {formatDate(article.createdAt)}
                       </span>
                     </article>
@@ -202,18 +111,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Footer ───────────────────────────────────────────── */}
-      <footer
-        style={{
-          marginTop: "clamp(4rem, 10vw, 6rem)",
-          paddingTop: "1.5rem",
-          borderTop: "1px solid var(--border)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "0.75rem",
-        }}
-      >
+      <footer className="page-footer">
         <span
           className="label-mono"
           style={{ color: "var(--text-dim)", fontStyle: "italic", textTransform: "none" }}
