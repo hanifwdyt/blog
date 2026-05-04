@@ -237,7 +237,6 @@ main {
   letter-spacing: -0.025em;
 }
 .prose h1 { font-size: 1.75em; font-weight: 700; }
-.prose h2 { font-size: 1.35em; font-weight: 600; }
 .prose h3 { font-size: 1.1em;  font-weight: 600; }
 
 .prose a {
@@ -376,4 +375,249 @@ main {
 /* ── Better code block header ───────────────────────────────── */
 .prose pre {
   position: relative;
+}
+
+/* ── Improved blockquote (pull-quote style) ─────────────────── */
+.prose blockquote {
+  border-left: 2px solid var(--accent);
+  margin: 2.8em 0;
+  padding: 0.9em 0 0.9em 1.75em;
+  color: var(--text);
+  font-style: italic;
+  position: relative;
+  font-size: 1.1em;
+  line-height: 1.78;
+  opacity: 0.88;
+}
+
+.prose blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.25em;
+  left: -0.05em;
+  font-family: var(--font-serif);
+  font-size: 3.5em;
+  color: var(--accent);
+  opacity: 0.22;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.prose blockquote p {
+  margin: 0;
+}
+
+/* ── Figcaption ─────────────────────────────────────────────── */
+.prose figcaption {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: -1.5em;
+  margin-bottom: 2em;
+  letter-spacing: 0.06em;
+}
+
+/* ── Prose h2 divider ───────────────────────────────────────── */
+.prose h2 {
+  font-size: 1.35em;
+  font-weight: 600;
+  padding-top: 0.5em;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Prose hr (custom) ──────────────────────────────────────── */
+.prose hr {
+  border: none;
+  text-align: center;
+  margin: 3.5em 0;
+  color: var(--accent-dim);
+  letter-spacing: 0.5em;
+}
+.prose hr::after {
+  content: '· · ·';
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* ── Reading time badge ─────────────────────────────────────── */
+.reading-time {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  padding: 0.2em 0.55em;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* ── Scroll to top button ───────────────────────────────────── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  animation: fadeIn 0.25s ease both;
+}
+.scroll-top-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-hover);
+}
+
+/* ── Share button ───────────────────────────────────────────── */
+.share-btn {
+  background: none;
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 0.4em 0.9em;
+  border-radius: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  letter-spacing: 0.1em;
+}
+.share-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.share-btn.copied {
+  border-color: #7a9e7e;
+  color: #7a9e7e;
+}
+
+/* ── Author bio ─────────────────────────────────────────────── */
+.author-bio {
+  margin-top: clamp(4rem, 10vw, 6rem);
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.author-bio-avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  user-select: none;
+}
+.author-bio-text {
+  flex: 1;
+}
+.author-bio-name {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+.author-bio-desc {
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Article prev/next navigation ───────────────────────────── */
+.article-sibling-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.article-sibling-link {
+  display: block;
+  padding: 1.25rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  position: relative;
+}
+.article-sibling-link:hover {
+  border-color: var(--accent-dim);
+  background: var(--bg-hover);
+}
+.article-sibling-link.is-next { text-align: right; }
+.article-sibling-dir {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 0.45rem;
+}
+.article-sibling-title {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+  display: block;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.article-sibling-link:hover .article-sibling-title { color: var(--text); }
+
+@media (max-width: 500px) {
+  .article-sibling-nav {
+    grid-template-columns: 1fr;
+  }
+  .article-sibling-link.is-next { text-align: left; }
+  .scroll-top-btn { bottom: 1.25rem; right: 1.25rem; }
+}
+
+/* ── Hero tagline ───────────────────────────────────────────── */
+.hero-tagline {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+/* ── Subtle article count badge ─────────────────────────────── */
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.25em 0.75em;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
 }

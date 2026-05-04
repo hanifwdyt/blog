@@ -85,6 +85,12 @@ export function formatDateLong(iso: string): string {
   });
 }
 
+export function estimateReadingTime(html: string): number {
+  const text = html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const words = text.split(" ").filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
 export function toRoman(n: number): string {
   const vals = [1000,900,500,400,100,90,50,40,10,9,5,4,1];
   const syms = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"];

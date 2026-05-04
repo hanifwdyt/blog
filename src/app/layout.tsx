@@ -23,17 +23,20 @@ const mono = Space_Mono({
 
 export const metadata: Metadata = {
   title: { default: "Hanif Widiyanto", template: "%s — Hanif Widiyanto" },
-  description: "Writing on technology, systems, and the patterns that connect them.",
+  description:
+    "Catatan perjalanan seorang software engineer di Jakarta — tentang kode, sistem, dan proses belajar yang tidak pernah selesai.",
+  authors: [{ name: "Hanif Widiyanto" }],
+  creator: "Hanif Widiyanto",
   openGraph: {
     siteName: "Hanif Widiyanto",
-    locale: "en_US",
+    locale: "id_ID",
     type: "website",
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${lora.variable} ${mono.variable}`}>
+    <html lang="id" className={`${playfair.variable} ${lora.variable} ${mono.variable}`}>
       <body style={{ fontFamily: "var(--font-body), Georgia, serif" }}>
         {children}
       </body>

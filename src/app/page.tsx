@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getArticles, formatDate, toRoman, extractExcerpt } from "@/lib/api";
+import { getArticles, formatDate, toRoman, extractExcerpt, estimateReadingTime } from "@/lib/api";
 
 export const revalidate = 300;
 
@@ -26,13 +26,14 @@ export default async function HomePage() {
         }}
       >
         <span className="label-mono">Hanif Widiyanto</span>
-        <span className="label-mono" style={{ color: "var(--accent)", opacity: 0.7 }}>
+        <span className="label-mono" style={{ color: "var(--accent)", opacity: 0.6 }}>
           blog.hanif.app
         </span>
       </div>
 
       {/* ── Hero header ──────────────────────────────────────── */}
       <header style={{ marginBottom: "clamp(4rem, 10vw, 7rem)" }}>
+        <span className="hero-tagline">Jakarta, Indonesia</span>
         <h1
           style={{
             fontFamily: "var(--font-serif)",
@@ -42,33 +43,45 @@ export default async function HomePage() {
             letterSpacing: "-0.04em",
             color: "var(--text)",
             margin: "0 0 1.75rem",
-            maxWidth: "16ch",
+            maxWidth: "14ch",
           }}
         >
-          Field Notes
+          Catatan Perjalanan
         </h1>
         <p
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "clamp(0.95rem, 2.2vw, 1.08rem)",
             color: "var(--text-muted)",
-            lineHeight: 1.65,
-            maxWidth: "48ch",
+            lineHeight: 1.75,
+            maxWidth: "46ch",
+            marginBottom: "1.25rem",
           }}
         >
-          Writing on technology, systems,
+          Software engineer yang nulis tentang apa yang dia bangun,
           <br />
-          and the patterns that connect them.
+          rusak, dan pelajari di sepanjang jalan.
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "clamp(0.88rem, 2vw, 0.95rem)",
+            color: "var(--text-dim)",
+            lineHeight: 1.7,
+            maxWidth: "44ch",
+            fontStyle: "italic",
+          }}
+        >
+          Tentang kode. Tentang sistem. Tentang proses jadi lebih baik.
         </p>
       </header>
 
       {/* ── Articles ─────────────────────────────────────────── */}
       <section>
-        {/* Section header */}
         <div className="section-header" style={{ marginBottom: 0 }}>
-          <span className="label-mono">Entries</span>
-          <span className="label-mono">
-            {published.length}&thinsp;{published.length === 1 ? "entry" : "total"}
+          <span className="label-mono">Tulisan</span>
+          <span className="count-badge">
+            {published.length}&thinsp;{published.length === 1 ? "entry" : "entries"}
           </span>
         </div>
 
@@ -77,85 +90,113 @@ export default async function HomePage() {
             style={{
               padding: "5rem 0",
               borderBottom: "1px solid var(--border)",
+              textAlign: "center",
             }}
           >
-            <p className="label-mono" style={{ textAlign: "center" }}>
-              — nothing published yet —
+            <p className="label-mono" style={{ marginBottom: "0.75rem" }}>
+              — belum ada tulisan —
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.82rem",
+                color: "var(--text-dim)",
+                fontStyle: "italic",
+              }}
+            >
+              Sedang ditulis. Sabar dulu.
             </p>
           </div>
         ) : (
           <ul style={{ listStyle: "none", padding: 0 }}>
-            {published.map((article, i) => (
-              <li
-                key={article.id}
-                className="article-item"
-                style={{ "--i": i } as React.CSSProperties}
-              >
-                <Link href={`/${article.slug}`} className="article-link">
-                  <article className="article-row">
-                    {/* ── Number ── */}
-                    <span
-                      className="article-num"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.58rem",
-                        color: "var(--accent)",
-                        letterSpacing: "0.1em",
-                        paddingTop: "0.35rem",
-                        userSelect: "none",
-                        opacity: 0.5,
-                      }}
-                    >
-                      {toRoman(i + 1)}
-                    </span>
+            {published.map((article, i) => {
+              const readTime = article.contentHtml
+                ? estimateReadingTime(article.contentHtml)
+                : null;
+              return (
+                <li
+                  key={article.id}
+                  className="article-item"
+                  style={{ "--i": i } as React.CSSProperties}
+                >
+                  <Link href={`/${article.slug}`} className="article-link">
+                    <article className="article-row">
+                      {/* ── Number ── */}
+                      <span
+                        className="article-num"
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.58rem",
+                          color: "var(--accent)",
+                          letterSpacing: "0.1em",
+                          paddingTop: "0.35rem",
+                          userSelect: "none",
+                          opacity: 0.45,
+                        }}
+                      >
+                        {toRoman(i + 1)}
+                      </span>
 
-                    {/* ── Title + excerpt + meta ── */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
-                      <h2 className="article-title">{article.title}</h2>
-                      {article.contentHtml && (
-                        <p
+                      {/* ── Title + excerpt + meta ── */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+                        <h2 className="article-title">{article.title}</h2>
+                        {article.contentHtml && (
+                          <p
+                            style={{
+                              fontFamily: "var(--font-body), Georgia, serif",
+                              fontSize: "0.82rem",
+                              color: "var(--text-muted)",
+                              lineHeight: 1.65,
+                              margin: 0,
+                              maxWidth: "52ch",
+                            }}
+                          >
+                            {extractExcerpt(article.contentHtml, 140)}
+                          </p>
+                        )}
+                        <div
                           style={{
-                            fontFamily: "var(--font-body), Georgia, serif",
-                            fontSize: "0.82rem",
-                            color: "var(--text-muted)",
-                            lineHeight: 1.6,
-                            margin: 0,
-                            maxWidth: "52ch",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.6rem",
+                            flexWrap: "wrap",
                           }}
                         >
-                          {extractExcerpt(article.contentHtml, 140)}
-                        </p>
-                      )}
+                          <span
+                            style={{
+                              fontFamily: "var(--font-mono)",
+                              fontSize: "0.58rem",
+                              color: "var(--text-dim)",
+                              letterSpacing: "0.1em",
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            {article.author || "Hanif Widiyanto"}
+                          </span>
+                          {readTime && (
+                            <span className="reading-time">{readTime}&thinsp;min</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* ── Date ── */}
                       <span
                         style={{
                           fontFamily: "var(--font-mono)",
                           fontSize: "0.58rem",
-                          color: "var(--text-dim)",
-                          letterSpacing: "0.1em",
-                          textTransform: "uppercase",
+                          color: "var(--text-muted)",
+                          letterSpacing: "0.05em",
+                          paddingTop: "0.35rem",
+                          whiteSpace: "nowrap",
                         }}
                       >
-                        {article.author || "PunakawanAI"}
+                        {formatDate(article.createdAt)}
                       </span>
-                    </div>
-
-                    {/* ── Date ── */}
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.58rem",
-                        color: "var(--text-muted)",
-                        letterSpacing: "0.05em",
-                        paddingTop: "0.35rem",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {formatDate(article.createdAt)}
-                    </span>
-                  </article>
-                </Link>
-              </li>
-            ))}
+                    </article>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         )}
       </section>
@@ -169,12 +210,19 @@ export default async function HomePage() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          flexWrap: "wrap",
+          gap: "0.75rem",
         }}
       >
-        <span className="label-mono" style={{ color: "var(--text-dim)" }}>
-          written by PunakawanAI
+        <span
+          className="label-mono"
+          style={{ color: "var(--text-dim)", fontStyle: "italic", textTransform: "none" }}
+        >
+          Hanif Widiyanto · Software Engineer · Jakarta
         </span>
-        <span className="label-mono">&copy;&thinsp;{new Date().getFullYear()}</span>
+        <span className="label-mono" style={{ color: "var(--text-dim)" }}>
+          &copy;&thinsp;{new Date().getFullYear()}
+        </span>
       </footer>
     </main>
   );
