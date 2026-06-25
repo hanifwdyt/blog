@@ -22,7 +22,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = await getArticle(slug);
   if (!article) return {};
-  const author = article.author || "Hanif Widiyanto";
+  const author = article.author || "Hanif T. Widiyanto";
   return {
     title: article.title,
     description: `${author} · ${formatDateLong(article.createdAt)}`,
@@ -54,7 +54,7 @@ export default async function ArticlePage({
       {/* ── Nav ────────────────────────────────────────────── */}
       <nav className="article-nav">
         <Link href="/" className="link-back">← tulisan</Link>
-        <span className="label-mono">Hanif Widiyanto</span>
+        <span className="label-mono">Hanif T. Widiyanto</span>
       </nav>
 
       {/* ── Header ─────────────────────────────────────────── */}

@@ -11,10 +11,9 @@ export default async function HomePage() {
     <main className="page-main">
       {/* ── Header ─────────────────────────────────────────── */}
       <header className="site-header">
-        <span className="site-name">Hanif Widiyanto</span>
+        <span className="site-name">Hanif T. Widiyanto</span>
         <p className="site-tagline">
-          Catatan seorang software engineer di Jakarta — tentang kode,
-          sistem, dan proses belajar yang nggak pernah selesai.
+          Menulis membuat saya pulang ke diri saya sendiri.
         </p>
         <hr className="site-rule" />
       </header>

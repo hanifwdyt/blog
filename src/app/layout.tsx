@@ -22,13 +22,12 @@ const mono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Hanif Widiyanto", template: "%s — Hanif Widiyanto" },
-  description:
-    "Catatan perjalanan seorang software engineer di Jakarta — tentang kode, sistem, dan proses belajar yang tidak pernah selesai.",
-  authors: [{ name: "Hanif Widiyanto" }],
-  creator: "Hanif Widiyanto",
+  title: { default: "Hanif T. Widiyanto", template: "%s — Hanif T. Widiyanto" },
+  description: "Menulis membuat saya pulang ke diri saya sendiri.",
+  authors: [{ name: "Hanif T. Widiyanto" }],
+  creator: "Hanif T. Widiyanto",
   openGraph: {
-    siteName: "Hanif Widiyanto",
+    siteName: "Hanif T. Widiyanto",
     locale: "id_ID",
     type: "website",
   },
