@@ -9,8 +9,9 @@ export default function NotFound() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "#080706",
+        background: "var(--bg)",
         fontFamily: "var(--font-mono)",
+        padding: "1.5rem",
       }}
     >
       <p
@@ -19,9 +20,10 @@ export default function NotFound() {
           letterSpacing: "0.12em",
           color: "var(--text-muted)",
           margin: "0 0 2rem 0",
+          textTransform: "uppercase",
         }}
       >
-        — not found —
+        — halaman ngga ketemu —
       </p>
       <Link
         href="/"
@@ -32,10 +34,9 @@ export default function NotFound() {
           color: "var(--accent)",
           textDecoration: "none",
           textTransform: "uppercase",
-          transition: "opacity 0.15s ease",
         }}
       >
-        ← back to index
+        ← balik ke beranda
       </Link>
     </main>
   );

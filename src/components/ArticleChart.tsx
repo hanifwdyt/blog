@@ -9,14 +9,14 @@ import {
 } from "recharts";
 import type { ChartData } from "@/lib/api";
 
-const ACCENT   = "#c4911e";
-const MUTED    = "#5c5141";
-const DIM      = "#3a3228";
-const TEXT     = "#e4d9c2";
-const BG_SOFT  = "#0d0b08";
-const BORDER   = "#1a1710";
+const ACCENT   = "#9a5b1f";
+const MUTED    = "#6b655c";
+const DIM      = "#e7e2d8";
+const TEXT     = "#1c1b18";
+const BG_SOFT  = "#f4f1ea";
+const BORDER   = "#e7e2d8";
 
-const PALETTE = [ACCENT, "#7a9e7e", "#6b8cba", "#b56a6a", MUTED, "#8c7aa8"];
+const PALETTE = [ACCENT, "#4f7a52", "#3f6aa8", "#a8503f", "#8c6a3f", "#6f5a8c"];
 
 const tooltipStyle = {
   backgroundColor: BG_SOFT,
