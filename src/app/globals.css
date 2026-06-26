@@ -13,6 +13,11 @@
   --border:      #e7e2d8;
   --border-soft: #ddd6c9;
   --code-bg:     #f4f1ea;
+
+  /* Classic-web "Blogspot 2003" font stacks — system fonts, no web load */
+  --font-serif: Georgia, "Times New Roman", Times, serif;     /* article/body titles */
+  --font-body:  Georgia, "Times New Roman", Times, serif;     /* reading */
+  --font-mono:  Verdana, Geneva, Tahoma, sans-serif;          /* chrome: name, labels, dates */
 }
 
 /* ── Base ───────────────────────────────────────────────────── */
@@ -21,7 +26,7 @@
 html {
   background: var(--bg);
   color: var(--text);
-  font-size: 18px;
+  font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -76,10 +81,10 @@ main { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
   margin-bottom: clamp(3rem, 8vw, 4.5rem);
 }
 .site-name {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--text);
   text-decoration: none;
   display: inline-block;
@@ -116,10 +121,10 @@ main { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 .post-title {
   font-family: var(--font-serif);
-  font-size: 1.32rem;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
   color: var(--text);
   transition: color 0.18s ease;
   margin: 0;
@@ -178,12 +183,12 @@ main { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 .article-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  font-size: clamp(1.45rem, 4vw, 1.95rem);
   font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   color: var(--text);
-  margin: 0 0 1rem;
+  margin: 0 0 0.8rem;
 }
 .article-meta {
   font-family: var(--font-mono, monospace);
@@ -209,11 +214,11 @@ main { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 /* ── Prose ──────────────────────────────────────────────────── */
 .prose {
   color: var(--text);
-  line-height: 1.78;
-  font-size: 1.06rem;
+  line-height: 1.6;
+  font-size: 1rem;
   font-family: var(--font-body), Georgia, serif;
 }
-.prose > * + * { margin-top: 1.4em; }
+.prose > * + * { margin-top: 1.15em; }
 
 .prose h1, .prose h2, .prose h3, .prose h4 {
   font-family: var(--font-serif);
